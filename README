@@ -1,0 +1,5 @@
+Over the course of time, I've developed a series of utilities that I use in conjunction with Moq.
+I use these in a variety of contexts, on a variety of machines, so distributed access to them seemed a lot
+more elegant than emailing them to myself or slapping them on my web server.
+
+I'll find it useful here, and if anyone else does too, so much the better.  
