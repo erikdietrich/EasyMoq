@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7F5C3091-2F39-4EA5-A574-03126A6B3E63}</ProjectGuid>
+    <ProjectGuid>{76363734-9420-471A-8643-3826E4C1CC5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DaedTech.EasyMoq</RootNamespace>
-    <AssemblyName>EasyMoq</AssemblyName>
+    <RootNamespace>SampleCode</RootNamespace>
+    <AssemblyName>SampleCode</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\ThirdParty\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MoqInheritors\Dummy.cs" />
-    <Compile Include="MoqInheritors\Spy.cs" />
-    <Compile Include="MoqInheritors\Stub.cs" />
-    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="BasicMath.cs" />
+    <Compile Include="BasicMathClient.cs" />
+    <Compile Include="BasicMathInheritor.cs" />
+    <Compile Include="IBasicMath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
