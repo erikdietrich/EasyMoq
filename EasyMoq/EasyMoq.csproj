@@ -43,9 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MoqInheritors\Dummy.cs" />
-    <Compile Include="MoqInheritors\Spy.cs" />
-    <Compile Include="MoqInheritors\Stub.cs" />
+    <Compile Include="Builders\TargetConstruction.cs" />
+    <Compile Include="MoqInheritors\DummyMock.cs" />
+    <Compile Include="MoqInheritors\SpyMock.cs" />
+    <Compile Include="MoqInheritors\StubMock.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

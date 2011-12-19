@@ -48,7 +48,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MoqInheritors\DummyTest.cs" />
+    <Compile Include="Builders\TargetConstructionTest.cs" />
+    <Compile Include="MoqInheritors\DummyMockTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BasicMathClientTest.cs" />
   </ItemGroup>
@@ -62,6 +63,7 @@
       <Name>SampleCode</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

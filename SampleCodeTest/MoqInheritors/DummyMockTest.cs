@@ -10,7 +10,7 @@ using DaedTech.EasyMoq.MoqInheritors;
 namespace SampleCodeTest.MoqInheritors
 {
     [TestClass]
-    public class DummyTest
+    public class DummyMockTest
     {
         #region Behavior
 
@@ -18,7 +18,7 @@ namespace SampleCodeTest.MoqInheritors
         [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
         public void Dummy_Behavior_Is_Strict()
         {
-            Assert.AreEqual<MockBehavior>(MockBehavior.Strict, new Dummy<IBasicMath>().Behavior);
+            Assert.AreEqual<MockBehavior>(MockBehavior.Strict, new DummyMock<IBasicMath>().Behavior);
         }
 
         #endregion
@@ -29,7 +29,7 @@ namespace SampleCodeTest.MoqInheritors
         [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
         public void CallBase_Is_Always_False()
         {
-            var myDummy = new Dummy<IBasicMath>();
+            var myDummy = new DummyMock<IBasicMath>();
             myDummy.CallBase = true;
 
             Assert.IsFalse(myDummy.CallBase);

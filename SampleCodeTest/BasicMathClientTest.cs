@@ -18,7 +18,7 @@ namespace SampleCodeTest
         [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
         public void Dummy_Always_Returns_Strict_Behavior()
         {
-            var myStub = new Dummy<IBasicMath>();
+            var myStub = new DummyMock<IBasicMath>();
 
             Assert.AreEqual<MockBehavior>(MockBehavior.Strict, myStub.Behavior);
         }

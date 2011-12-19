@@ -9,12 +9,12 @@ namespace DaedTech.EasyMoq.MoqInheritors
     /// <summary>A spy sets up all methods, properties, etc, so that it can be queried about invocations</summary>
     /// <author>Erik Dietrich</author>
     /// <written>12/17/2011</written>
-    public class Spy<T> : Mock<T> where T : class
+    public class SpyMock<T> : Mock<T> where T : class
     {
         /// <summary>
         /// Initializes a new instance of the Spy class.
         /// </summary>
-        public Spy()
+        public SpyMock()
         {
             SetupAllProperties();
         }

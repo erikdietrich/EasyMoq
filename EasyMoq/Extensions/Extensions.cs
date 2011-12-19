@@ -7,6 +7,6 @@ namespace DaedTech.EasyMoq.Extensions
 {
     public static class Extensions
     {
-
+        
     }
 }
