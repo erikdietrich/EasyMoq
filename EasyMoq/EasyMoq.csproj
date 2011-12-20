@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\TargetConstruction.cs" />
+    <Compile Include="Builders\TargetBuilder.cs" />
     <Compile Include="MoqInheritors\DummyMock.cs" />
     <Compile Include="MoqInheritors\SpyMock.cs" />
     <Compile Include="MoqInheritors\StubMock.cs" />

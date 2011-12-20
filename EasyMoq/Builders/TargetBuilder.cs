@@ -13,22 +13,27 @@ namespace DaedTech.EasyMoq.Builders
         /// <summary>Construct an instance of the class under test with dummy test doubles</summary>
         /// <typeparam name="T">Class to create</typeparam>
         /// <returns>Newly created test, populated with dummies, where applicable</returns>
-        public T BuildWithDummies<T>() where T : class
+        public virtual T BuildWithDummies<T>() where T : class
         {
-            List<object> myDependencies = new List<object>();
+            var myDependencies = new List<object>();
             var myClass = typeof(T);
             var myConstructor = myClass.GetConstructors()[0];
             foreach (var myParameter in myConstructor.GetParameters())
             {
-                var myMockType = typeof(Mock<>);
-                Type[] myTypeArgs = new Type[] { myParameter.ParameterType };
-                var myMock = Activator.CreateInstance(myMockType.MakeGenericType(myTypeArgs)) as Mock;
+                var myMock = BuildMock(myParameter.ParameterType);
                 if (myMock != null)
                 {
                     myDependencies.Add(myMock.Object);
                 }
             }
             return (T)Activator.CreateInstance(typeof(T), myDependencies.ToArray());
+        }
+
+        private Mock BuildMock(Type typeToMock)
+        {
+            var myMockType = typeof(Mock<>);
+            Type[] myTypeArgs = new Type[] { typeToMock };
+            return Activator.CreateInstance(myMockType.MakeGenericType(myTypeArgs)) as Mock;
         }
     }
 }
