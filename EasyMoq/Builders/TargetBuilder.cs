@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Moq;
 using DaedTech.EasyMoq.MoqInheritors;
+using System.Reflection;
 
 namespace DaedTech.EasyMoq.Builders
 {
@@ -15,20 +16,36 @@ namespace DaedTech.EasyMoq.Builders
         /// <returns>Newly created test, populated with dummies, where applicable</returns>
         public virtual T BuildWithDummies<T>() where T : class
         {
-            var myDependencies = new List<object>();
             var myClass = typeof(T);
             var myConstructor = myClass.GetConstructors()[0];
-            foreach (var myParameter in myConstructor.GetParameters())
-            {
-                var myMock = BuildMock(myParameter.ParameterType);
-                if (myMock != null)
-                {
-                    myDependencies.Add(myMock.Object);
-                }
-            }
+            var myDependencies = GetDependenciesAsDummies(myConstructor);
+
             return (T)Activator.CreateInstance(typeof(T), myDependencies.ToArray());
         }
 
+        //TODO - this needs to be broken up
+        private List<object> GetDependenciesAsDummies(ConstructorInfo myConstructor)
+        {
+            var myDependencies = new List<object>();
+            foreach (var myParameter in myConstructor.GetParameters())
+            {
+                if (myParameter.ParameterType.IsClass || myParameter.ParameterType.IsInterface)
+                {
+                    var myMock = BuildMock(myParameter.ParameterType);
+                    if (myMock != null)
+                    {
+                        myDependencies.Add(myMock.Object);
+                    }
+                }
+                else
+                {
+                    myDependencies.Add(Activator.CreateInstance(myParameter.ParameterType));
+                }
+            }
+            return myDependencies;
+        }
+
+        //TODO - this should be a polymorphic implementation of whatever type of test double will be created, so abstract to a class
         private Mock BuildMock(Type typeToMock)
         {
             var myMockType = typeof(Mock<>);
