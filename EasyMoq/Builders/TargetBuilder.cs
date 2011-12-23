@@ -14,28 +14,26 @@ namespace DaedTech.EasyMoq.Builders
         /// <summary>Construct an instance of the class under test with dummy test doubles</summary>
         /// <typeparam name="T">Class to create</typeparam>
         /// <returns>Newly created test, populated with dummies, where applicable</returns>
-        public virtual T BuildWithDummies<T>() where T : class
+        public virtual T BuildTarget<T>(IMockBuilder builder = null) where T : class
         {
+            var myBuilder = builder ?? new DummyMockBuilder();
             var myClass = typeof(T);
             var myConstructor = myClass.GetConstructors()[0];
-            var myDependencies = GetDependenciesAsDummies(myConstructor);
+            var myDependencies = GetDependencies(myConstructor, myBuilder);
 
             return (T)Activator.CreateInstance(typeof(T), myDependencies.ToArray());
         }
 
         //TODO - this needs to be broken up
-        private List<object> GetDependenciesAsDummies(ConstructorInfo myConstructor)
+        private List<object> GetDependencies(ConstructorInfo myConstructor, IMockBuilder myBuilder)
         {
             var myDependencies = new List<object>();
             foreach (var myParameter in myConstructor.GetParameters())
             {
                 if (myParameter.ParameterType.IsClass || myParameter.ParameterType.IsInterface)
                 {
-                    var myMock = BuildMock(myParameter.ParameterType);
-                    if (myMock != null)
-                    {
-                        myDependencies.Add(myMock.Object);
-                    }
+                    var myMock = myBuilder.BuildMock(myParameter.ParameterType);
+                    myDependencies.Add(myMock.Object);
                 }
                 else
                 {
@@ -43,14 +41,6 @@ namespace DaedTech.EasyMoq.Builders
                 }
             }
             return myDependencies;
-        }
-
-        //TODO - this should be a polymorphic implementation of whatever type of test double will be created, so abstract to a class
-        private Mock BuildMock(Type typeToMock)
-        {
-            var myMockType = typeof(Mock<>);
-            Type[] myTypeArgs = new Type[] { typeToMock };
-            return Activator.CreateInstance(myMockType.MakeGenericType(myTypeArgs)) as Mock;
         }
     }
 }

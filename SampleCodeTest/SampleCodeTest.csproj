@@ -48,7 +48,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\DummyMockBuilderTest.cs" />
     <Compile Include="Builders\TargetBuilderTest.cs" />
+    <Compile Include="ExtendedAssert.cs" />
     <Compile Include="MoqInheritors\DummyMockTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BasicMathClientTest.cs" />

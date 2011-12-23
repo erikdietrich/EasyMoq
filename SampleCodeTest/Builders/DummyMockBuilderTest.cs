@@ -24,6 +24,6 @@ namespace SampleCodeTest.Builders
         public void BuildMock_Returns_Instance_Of_Mock_With_Generic_Parameter_Type()
         {
             Assert.IsInstanceOfType(new DummyMockBuilder().BuildMock(typeof(IBasicMath)), typeof(Mock<IBasicMath>));
-        }
+        }   
     }
 }
