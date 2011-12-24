@@ -46,6 +46,7 @@
     <Compile Include="Builders\IDependency.cs" />
     <Compile Include="Builders\DummyMockBuilder.cs" />
     <Compile Include="Builders\IMockBuilder.cs" />
+    <Compile Include="Builders\PrimitiveDependency.cs" />
     <Compile Include="Builders\TargetBuilder.cs" />
     <Compile Include="MoqInheritors\DummyMock.cs" />
     <Compile Include="MoqInheritors\SpyMock.cs" />

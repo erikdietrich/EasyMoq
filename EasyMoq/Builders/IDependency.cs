@@ -6,7 +6,7 @@ using System.Text;
 namespace DaedTech.EasyMoq.Builders
 {
     /// <summary>This defines base behavior for </summary>
-    public interface IDependency
+    internal interface IDependency
     {
         /// <summary>Type of the dependency to be mocked</summary>
         Type TypeToMock { get; set; }
