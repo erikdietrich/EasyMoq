@@ -14,33 +14,33 @@ namespace DaedTech.EasyMoq.Builders
         /// <summary>Construct an instance of the class under test with dummy test doubles</summary>
         /// <typeparam name="T">Class to create</typeparam>
         /// <returns>Newly created test, populated with dummies, where applicable</returns>
-        public virtual T BuildTarget<T>(IMockBuilder builder = null) where T : class
+        public virtual T BuildTarget<T>(IDoubleBuilder builder = null) where T : class
         {
-            var myBuilder = builder ?? new DummyMockBuilder();
             var myClass = typeof(T);
-            var myConstructor = myClass.GetConstructors()[0];
-            var myDependencies = GetDependencies(myConstructor, myBuilder);
+            var myConstructor = myClass.GetConstructors()[0]; //This is going to need to be expanded to a class that parses the constructors and picks one
+            var myBuilder = new ConstructorDependencyBuilder(myConstructor, builder);
+            var myDependencies = myBuilder.GetDependencyDoubles();
 
             return (T)Activator.CreateInstance(typeof(T), myDependencies.ToArray());
         }
 
-        //TODO - this needs to be broken up
-        private List<object> GetDependencies(ConstructorInfo myConstructor, IMockBuilder myBuilder)
-        {
-            var myDependencies = new List<object>();
-            foreach (var myParameter in myConstructor.GetParameters())
-            {
-                if (myParameter.ParameterType.IsClass || myParameter.ParameterType.IsInterface)
-                {
-                    var myMock = myBuilder.BuildMock(myParameter.ParameterType);
-                    myDependencies.Add(myMock.Object);
-                }
-                else
-                {
-                    myDependencies.Add(Activator.CreateInstance(myParameter.ParameterType));
-                }
-            }
-            return myDependencies;
-        }
+        //TODO - this is dead code
+        //private List<object> GetDependencies(ConstructorInfo myConstructor, IMockBuilder builder)
+        //{
+        //    var myDependencies = new List<object>();
+        //    foreach (ParameterInfo myParameter in myConstructor.GetParameters())
+        //    {
+        //        if (myParameter.ParameterType.IsClass || myParameter.ParameterType.IsInterface)
+        //        {
+        //            var myMock = builder.BuildMock(myParameter.ParameterType);
+        //            myDependencies.Add(((Mock)myMock).Object);
+        //        }
+        //        else
+        //        {
+        //            myDependencies.Add(Activator.CreateInstance(myParameter.ParameterType));
+        //        }
+        //    }
+        //    return myDependencies;
+        //}
     }
 }

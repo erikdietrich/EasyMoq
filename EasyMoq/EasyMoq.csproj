@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\IDependency.cs" />
-    <Compile Include="Builders\DummyMockBuilder.cs" />
-    <Compile Include="Builders\IMockBuilder.cs" />
-    <Compile Include="Builders\PrimitiveDependency.cs" />
+    <Compile Include="Builders\DummyBuilder.cs" />
+    <Compile Include="Builders\FakeBuilder.cs" />
+    <Compile Include="Builders\IDoubleBuilder.cs" />
     <Compile Include="Builders\TargetBuilder.cs" />
+    <Compile Include="Builders\ConstructorDependencyBuilder.cs" />
+    <Compile Include="Builders\TypeValidator.cs" />
+    <Compile Include="Common\Validator.cs" />
     <Compile Include="MoqInheritors\DummyMock.cs" />
     <Compile Include="MoqInheritors\SpyMock.cs" />
     <Compile Include="MoqInheritors\StubMock.cs" />

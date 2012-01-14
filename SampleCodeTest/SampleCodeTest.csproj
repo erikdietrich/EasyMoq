@@ -48,9 +48,12 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\DummyMockBuilderTest.cs" />
-    <Compile Include="Builders\PrimitiveDependencyTest.cs" />
+    <Compile Include="Builders\DummyBuilderTest.cs" />
+    <Compile Include="Builders\FakeBuilderTest.cs" />
     <Compile Include="Builders\TargetBuilderTest.cs" />
+    <Compile Include="Builders\ConstructorDependencyBuilderTest.cs" />
+    <Compile Include="Builders\TypeValidatorTest.cs" />
+    <Compile Include="Common\InvariantValidatorTest.cs" />
     <Compile Include="ExtendedAssert.cs" />
     <Compile Include="MoqInheritors\DummyMockTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
