@@ -19,7 +19,7 @@ namespace DaedTech.EasyMoq.Builders
         private readonly Validator _validator = new Validator();
 
         /// <summary>Stores the constructor information of the type we're </summary>
-        private readonly ConstructorInfo _constructorInfo;
+        private readonly ConstructorInfo[] _constructorInfo;
 
         /// <summary>The particular type of mock builder to use for construction here</summary>
         private readonly IDoubleBuilder _builder;
@@ -30,7 +30,7 @@ namespace DaedTech.EasyMoq.Builders
 
         /// <summary>Dependency injected constructor</summary>
         /// <param name="constructorInfo">Constructor information of a class</param>
-        public ConstructorDependencyBuilder(ConstructorInfo constructorInfo, IDoubleBuilder builder = null)
+        public ConstructorDependencyBuilder(ConstructorInfo[] constructorInfo, IDoubleBuilder builder = null)
         {
             _validator.VerifyNonNull(constructorInfo);
             _constructorInfo = constructorInfo;
@@ -45,20 +45,12 @@ namespace DaedTech.EasyMoq.Builders
         public IList<object> GetDependencyDoubles()
         {
             var myList = new List<object>();
-            foreach (var myParameter in _constructorInfo.GetParameters())
+
+            var myConstructor = _constructorInfo.OrderBy(xtor => xtor.GetParameters().Count()).First(); //We want the constructor with the fewest parameters
+
+            foreach (var myParameter in myConstructor.GetParameters())
             {
-                if (myParameter.ParameterType == typeof(string))
-                {
-                    myList.Add((string)null);
-                }
-                else if (myParameter.ParameterType.IsInterface)
-                {
-                    myList.Add(_builder.CreateMoqDouble(myParameter.ParameterType));
-                }
-                else
-                {
-                    myList.Add(Activator.CreateInstance(myParameter.ParameterType));
-                }
+                myList.Add(_builder.CreateDouble(myParameter.ParameterType));
             }
             return myList;
         }

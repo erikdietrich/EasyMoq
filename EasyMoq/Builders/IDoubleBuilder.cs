@@ -9,10 +9,6 @@ namespace DaedTech.EasyMoq.Builders
     /// <summary>This interface defines </summary>
     public interface IDoubleBuilder
     {
-        object CreateMoqDouble(Type typeToMock);
-
-        object CreateNonMoqDouble(Type typeToMock);
-
-        object CreateValueDouble(Type typeToMock);
+        object CreateDouble(Type typeToDouble);
     }
 }

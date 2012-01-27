@@ -12,29 +12,35 @@ namespace SampleCodeTest.Builders
     [TestClass]
     public class DummyBuilderTest
     {
-        #region CreateMoqDouble
-
-        /// <summary>This shouldn't be allowed - it makes no sense</summary>
-        [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
-        public void CreateMoqDouble_Throws_Exception_On_Null_Argument()
+        [TestClass]
+        public class CreateDouble
         {
-            ExtendedAssert.Throws<ArgumentNullException>(() => new DummyBuilder().CreateMoqDouble(null));
-        }
+            /// <summary>For example... (part of my TDD)</summary>
+            [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
+            public void Returns_Default_Int_For_Int()
+            {
+                var myBuilder = new DummyBuilder();
 
-        /// <summary>Happy path should return the mock we want</summary>
-        [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
-        public void CreateMoqDouble_Returns_Null()
-        {
-            Assert.IsNull(new DummyBuilder().CreateMoqDouble(typeof(IBasicMath)));
-        }
+                Assert.AreEqual<int>(default(int), (int)myBuilder.CreateDouble(typeof(int)));
+            }
 
-        #endregion
+            /// <summary>For reference types, this is the default and thus what we should get</summary>
+            [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
+            public void Returns_Null_For_String()
+            {
+                var myBuilder = new DummyBuilder();
 
-        /// <summary>This </summary>
-        [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
-        public void CreateNonMoqDouble_Returns_Null_For_UnMoqable_Class()
-        {
-            Assert.IsNull(new DummyBuilder().CreateNonMoqDouble(typeof(string)));
+                Assert.IsNull(myBuilder.CreateDouble(typeof(string)));
+            }
+
+            /// <summary>This should return null for something that moq supports</summary>
+            [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
+            public void Returns_Null_For_Interface()
+            {
+                var myBuilder = new DummyBuilder();
+
+                Assert.IsNull(myBuilder.CreateDouble(typeof(IComparable)));
+            }
         }
     }
 }

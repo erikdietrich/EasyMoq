@@ -10,28 +10,17 @@ namespace DaedTech.EasyMoq.Builders
     /// <summary>Builds dummies</summary>
     public class DummyBuilder : IDoubleBuilder
     {
-        /// <summary>Used to verify method preconditions and object invariants</summary>
-        private readonly Validator _validator = new Validator();
         #region IDoubleBuilder Members
 
-        /// <summary>Creates a moq double (assuming that the type is moq-able)</summary>
-        public object CreateMoqDouble(Type typeToMock)
+        /// <summary>Create a dummy of the given type</summary>
+        /// <param name="typeToDouble">Type to dummy</param>
+        /// <returns>The type in question as an object</returns>
+        public object CreateDouble(Type typeToDouble)
         {
-            _validator.VerifyNonNull(typeToMock, "typeToMock");
-            return null;
-        }
+            if(typeToDouble.IsValueType)
+                return Activator.CreateInstance(typeToDouble);
 
-        /// <summary>Dummy builder just returns null for non-moqable objects</summary>
-        public object CreateNonMoqDouble(Type typeToMock)
-        {
             return null;
-        }
-
-        /// <summary>Returns default instance of the value type in question</summary>
-        /// <param name="typeToMock">Value type for which to create a double</param>
-        public object CreateValueDouble(Type typeToMock)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

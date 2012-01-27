@@ -36,6 +36,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,10 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\DummyBuilder.cs" />
-    <Compile Include="Builders\FakeBuilder.cs" />
     <Compile Include="Builders\IDoubleBuilder.cs" />
     <Compile Include="Builders\TargetBuilder.cs" />
     <Compile Include="Builders\ConstructorDependencyBuilder.cs" />
+    <Compile Include="Builders\MoqabilityEvaluator.cs" />
     <Compile Include="Builders\TypeValidator.cs" />
     <Compile Include="Common\Validator.cs" />
     <Compile Include="MoqInheritors\DummyMock.cs" />
