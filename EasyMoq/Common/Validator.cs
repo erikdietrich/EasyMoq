@@ -17,7 +17,7 @@ namespace DaedTech.EasyMoq.Common
         {
             if (argument == null)
             {
-                throw new ArgumentNullException("argument", message);
+                throw new ArgumentNullException("argument", message); 
             }
         }
 
