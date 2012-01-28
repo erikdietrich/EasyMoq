@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Moq;
-using DaedTech.EasyMoq.MoqInheritors;
 using System.Reflection;
 
 namespace DaedTech.EasyMoq.Builders
 {
 
+    /// <summary>This class is the public entry point for auto mocking</summary>
+    /// <author>Erik Dietrich</author>
+    /// <written>1/27/2012</written>
     public class TargetBuilder
     {
         /// <summary>Construct an instance of the class under test with dummy test doubles</summary>

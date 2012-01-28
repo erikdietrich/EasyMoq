@@ -49,12 +49,12 @@
     <Compile Include="Builders\IDoubleBuilder.cs" />
     <Compile Include="Builders\TargetBuilder.cs" />
     <Compile Include="Builders\ConstructorDependencyBuilder.cs" />
-    <Compile Include="Builders\MoqabilityEvaluator.cs" />
-    <Compile Include="Builders\TypeValidator.cs" />
     <Compile Include="Common\Validator.cs" />
-    <Compile Include="MoqInheritors\DummyMock.cs" />
-    <Compile Include="MoqInheritors\SpyMock.cs" />
-    <Compile Include="MoqInheritors\StubMock.cs" />
+    <Compile Include="Doubles\IMoqabilityEvaluator.cs" />
+    <Compile Include="Doubles\MoqabilityEvaluator.cs" />
+    <Compile Include="Doubles\TestDouble.cs" />
+    <Compile Include="Doubles\Dummy.cs" />
+    <Compile Include="Doubles\Stub.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
