@@ -1,6 +1,10 @@
-Over the course of time, I've developed a series of utilities that I use in conjunction with Moq.
-I use these in a variety of contexts, on a variety of machines, so distributed access to them seemed a lot
-more elegant than emailing them to myself or slapping them on my web server.
+This started out as a collection of little shortcuts I'd added and tended to use to make it easier
+for me to work with Moq, but I'm kind of letting the spirit move me.  What I'm working toward now
+is having a full spectrum of test doubles: Dummy, Stub, Fake, Spy, Mock, all of which wrap a Moq<> object
+and expose progressively more of its setup functionality as the doubles get smarter.
 
-I'll find it useful here, and if anyone else does too, so much the better.  
-
+I'm also planning to add a series of extension methods to Moq (what this project actually started as), and
+to provide functionality for uniform representation of non-class types.  The reason for this is that the final
+flourish will be to allow automatic class under test constructiont through reflection, eliminating the need
+to go back and change tests when xtor signatures change.  The consistent representation of all xtor parameters,
+mockable or not, will allow that more easily.
