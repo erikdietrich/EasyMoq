@@ -15,9 +15,9 @@ namespace DaedTech.EasyMoq.Doubles
         /// <returns>True if moq will work on it, false otherwise</returns>
         public bool IsMoqable<T>()
         {
-            var myTypeTypeToEvaluate = typeof(T);
+            var myTypeToEvaluate = typeof(T);
 
-            return myTypeTypeToEvaluate.IsInterface || myTypeTypeToEvaluate.GetConstructor(new Type[] { }) != null;
+            return !myTypeToEvaluate.IsValueType && !myTypeToEvaluate.IsSealed;
         }
 
     }

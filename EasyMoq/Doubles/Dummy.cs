@@ -11,7 +11,7 @@ namespace DaedTech.EasyMoq.Doubles
     public class Dummy<T> : TestDouble<T>
     {
         /// <summary>This is the actual dummy</summary>
-        public override object Object
+        public override T Object
         {
             get { return default(T); }
         }

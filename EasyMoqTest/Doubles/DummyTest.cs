@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DaedTech.EasyMoq.Doubles;
+using Moq;
 
 namespace DaedTech.EasyMoqTest.Doubles
 {
@@ -32,6 +33,15 @@ namespace DaedTech.EasyMoqTest.Doubles
             public void Is_Null_When_Generic_Parameter_Is_Interface()
             {
                 Assert.IsNull(new Dummy<IComparable>().Object);
+            }
+
+            [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
+            public void Blah()
+            {
+                Mock myMock = new Mock<IComparable>();
+                myMock.SetReturnsDefault(true);
+                var myMock2 = new Mock<Mock>();
+
             }
         }
     }

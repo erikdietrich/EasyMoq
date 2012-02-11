@@ -46,15 +46,24 @@ namespace DaedTech.EasyMoqTest.Doubles
                 Assert.IsTrue(myEvaluator.IsMoqable<Moqable>());
             }
 
-            public class NotMoqable { NotMoqable(int x) { }  }
+            public class NoDefaultXtor { NoDefaultXtor(int x) { }  }
 
             /// <summary>Moq won't support this, so neither should we</summary>
             [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
-            public void Returns_False_For_Type_With_No_Empty_Constructor()
+            public void Returns_True_For_Reference_Type_With_No_Empty_Constructor()
             {
                 var myEvaluator = new MoqabilityEvaluator();
 
-                Assert.IsFalse(myEvaluator.IsMoqable<NotMoqable>());
+                Assert.IsTrue(myEvaluator.IsMoqable<NoDefaultXtor>());
+            }
+
+            /// <summary>Strings are not moqable</summary>
+            [TestMethod, Owner("ebd"), TestCategory("Proven"), TestCategory("Unit")]
+            public void Returns_False_For_String()
+            {
+                var myEvaluator = new MoqabilityEvaluator();
+
+                Assert.IsFalse(myEvaluator.IsMoqable<string>());
             }
         }
     }

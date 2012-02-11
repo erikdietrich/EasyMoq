@@ -11,6 +11,6 @@ namespace DaedTech.EasyMoq.Doubles
     /// <written>1/27/2012</written>
     public abstract class TestDouble<T>
     {
-        public abstract object Object { get; }
+        public abstract T Object { get; }
     }
 }
